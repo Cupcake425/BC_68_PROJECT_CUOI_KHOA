@@ -1,0 +1,11 @@
+@import "./../color/color";
+@mixin buttonStyle() {
+  border: 1px solid black;
+  padding: 5px 20px;
+  border-radius: 8px;
+  &:hover {
+    color: white;
+    background-color: $sec-color;
+    border-color: $sec-color;
+  }
+}

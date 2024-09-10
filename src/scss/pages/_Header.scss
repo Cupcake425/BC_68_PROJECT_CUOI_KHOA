@@ -1,0 +1,29 @@
+@import "./../color/color";
+@import "./../mixin/mixin";
+header {
+  .header_top {
+    background-color: $main-color;
+    .container {
+      .header_content {
+        .header_logo {
+        }
+        .header_navbar {
+          .header_login {
+            @include buttonStyle();
+          }
+          .header_signup {
+            @include buttonStyle();
+          }
+        }
+      }
+    }
+  }
+  .header_bottom {
+    background-color: $main-color;
+    a {
+      &:hover {
+        color: $sec-color;
+      }
+    }
+  }
+}
