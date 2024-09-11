@@ -4,18 +4,18 @@ import { quanLyKhoaHoc } from "../../services/quanLyKhoaHoc.service";
 import "./../../scss/pages/_DanhMucKhoaHocList.scss";
 import { path } from "../../common/path";
 
-const DanhMucKhoaHocList = () => {
+const TimKiemKhoaHoc = () => {
   const [searchParam, setSearchParam] = useSearchParams();
   const [listLesson, setListLesson] = useState([]);
-  let maDanhMuc = searchParam.get("ma-danh-muc");
+  let tenKhoaHoc = searchParam.get("tenKhoaHoc");
   useEffect(() => {
     quanLyKhoaHoc
-      .layKhoaHocTheoTenDanhMuc(maDanhMuc)
+      .layDanhSachKhoaHoc(tenKhoaHoc)
       .then((res) => {
         setListLesson(res.data);
       })
       .catch((err) => console.log(err));
-  }, [maDanhMuc]);
+  }, [tenKhoaHoc]);
   return (
     <div className="listLesson">
       <div className="container">
@@ -50,4 +50,4 @@ const DanhMucKhoaHocList = () => {
   );
 };
 
-export default DanhMucKhoaHocList;
+export default TimKiemKhoaHoc;

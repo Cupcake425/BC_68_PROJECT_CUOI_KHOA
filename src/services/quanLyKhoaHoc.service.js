@@ -1,6 +1,11 @@
 import { http } from "./config";
 
 export const quanLyKhoaHoc = {
+  layDanhSachKhoaHoc: (data) => {
+    return http.get(
+      `/QuanLyKhoaHoc/LayDanhSachKhoaHoc?tenKhoaHoc=${data}&MaNhom=GP01`
+    );
+  },
   layDanhMucKhoaHoc: () => {
     return http.get("/QuanLyKhoaHoc/LayDanhMucKhoaHoc");
   },
@@ -8,5 +13,8 @@ export const quanLyKhoaHoc = {
     return http.get(
       `/QuanLyKhoaHoc/LayKhoaHocTheoDanhMuc?maDanhMuc=${data}&MaNhom=GP01`
     );
+  },
+  layThongTinKhoaHoc: (data) => {
+    return http.get(`/QuanLyKhoaHoc/LayThongTinKhoaHoc?maKhoaHoc=${data}`);
   },
 };
