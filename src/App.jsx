@@ -4,6 +4,8 @@ import useRouter from "./hooks/useRouter";
 import { createContext } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { Provider } from "react-redux";
+import { store } from "./redux/configStore";
 export const NotificationContext = createContext();
 export const isLoginContext = createContext();
 function App() {
@@ -18,12 +20,14 @@ function App() {
   };
   const router = useRouter();
   return (
-    <NotificationContext.Provider value={{ handleNotification }}>
-      <isLoginContext.Provider value={{ isLogin, setIsLogin }}>
-        <RouterProvider router={router} />
-        <ToastContainer />
-      </isLoginContext.Provider>
-    </NotificationContext.Provider>
+    <Provider store={store}>
+      <NotificationContext.Provider value={{ handleNotification }}>
+        <isLoginContext.Provider value={{ isLogin, setIsLogin }}>
+          <RouterProvider router={router} />
+          <ToastContainer />
+        </isLoginContext.Provider>
+      </NotificationContext.Provider>
+    </Provider>
   );
 }
 

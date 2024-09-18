@@ -7,12 +7,15 @@ import { notiValidation } from "../../common/NotiValidation";
 import { Link, useNavigate } from "react-router-dom";
 import CustomInput from "../../components/InputCustom/CustomInput";
 import { Skeleton } from "antd";
-import LocaleProvider from "antd/es/locale";
+import { path } from "../../common/path";
+import { useDispatch } from "react-redux";
+import { setValueUser } from "../../redux/authSlice";
 const Login = () => {
   const { handleNotification } = useContext(NotificationContext);
   const { setIsLogin, isLogin } = useContext(isLoginContext);
   const navigate = useNavigate();
   const [logInCheck, setLogInCheck] = useState(true);
+  const dispatch = useDispatch();
 
   const { values, errors, handleChange, handleBlur, handleSubmit, touched } =
     useFormik({
@@ -28,9 +31,9 @@ const Login = () => {
             handleNotification("Sign In successfully!", "success");
             setIsLogin(true);
             setTimeout(() => {
-              navigate("/");
+              navigate(path.home);
             }, 2000);
-            console.log(res);
+            dispatch(setValueUser(res.data));
             localStorage.setItem("userData", JSON.stringify(res.data));
           })
           .catch((err) => {

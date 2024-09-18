@@ -9,7 +9,6 @@ import { Dropdown, Space } from "antd";
 const Header = () => {
   const [khoaHoc, setKhoaHoc] = useState([]);
   const { isLogin } = useContext(isLoginContext);
-  console.log(khoaHoc);
   useEffect(() => {
     quanLyKhoaHoc
       .layDanhMucKhoaHoc()
@@ -21,7 +20,11 @@ const Header = () => {
   const items = [
     {
       key: "1",
-      label: <Link to={"/user-info"}>Xem thông tin cá nhân</Link>,
+      label: <Link to={path.userInfo}>Xem thông tin cá nhân</Link>,
+    },
+    {
+      key: "2",
+      label: <Link to={path.userLessonResgister}>Khóa học của tôi</Link>,
     },
   ];
   const renderSignInSignUp = () => {
@@ -37,7 +40,7 @@ const Header = () => {
               placement="bottomRight"
             >
               <div className="pe-8 text-orange-500 font-semibold text-xl">
-                <span>Hello {user?.hoTen}</span>
+                <span className="cursor-pointer">Hello {user?.hoTen}</span>
               </div>
             </Dropdown>
           </Space>
