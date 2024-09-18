@@ -1,14 +1,19 @@
 import { useFormik } from "formik";
-import React, { useContext } from "react";
-import { NotificationContext } from "../../App";
+import React, { useContext, useEffect, useState } from "react";
+import { isLoginContext, NotificationContext } from "../../App";
 import { authService } from "../../services/authService.service";
 import * as yup from "yup";
 import { notiValidation } from "../../common/NotiValidation";
 import { Link, useNavigate } from "react-router-dom";
 import CustomInput from "../../components/InputCustom/CustomInput";
+import { Skeleton } from "antd";
+import LocaleProvider from "antd/es/locale";
 const Login = () => {
   const { handleNotification } = useContext(NotificationContext);
+  const { setIsLogin, isLogin } = useContext(isLoginContext);
   const navigate = useNavigate();
+  const [logInCheck, setLogInCheck] = useState(true);
+
   const { values, errors, handleChange, handleBlur, handleSubmit, touched } =
     useFormik({
       initialValues: {
@@ -21,11 +26,12 @@ const Login = () => {
           .signin(values)
           .then((res) => {
             handleNotification("Sign In successfully!", "success");
-
+            setIsLogin(true);
             setTimeout(() => {
               navigate("/");
             }, 2000);
             console.log(res);
+            localStorage.setItem("userData", JSON.stringify(res.data));
           })
           .catch((err) => {
             console.log("err in sign in: ", err);
@@ -44,8 +50,23 @@ const Login = () => {
         taiKhoan: yup.string().required(notiValidation.empty),
       }),
     });
+
+  useEffect(() => {
+    console.log("Checking login status...");
+    if (isLogin || localStorage.getItem("userData")) {
+      setTimeout(() => {
+        navigate("/"); // Redirect to homepage after 2 seconds
+      }, 2000);
+    } else {
+      setLogInCheck(false); // Mark check as done but no redirect since not logged in
+    }
+  }, [isLogin, navigate]);
+
+  if (logInCheck) return <Skeleton active />;
+
   return (
     <div>
+      {" "}
       <div className="LogInPage">
         <div className="container">
           <div className="content h-screen pt-20">
@@ -64,7 +85,7 @@ const Login = () => {
               </div>
               <div className="">
                 <form action="" onSubmit={handleSubmit}>
-                  <div className="flex flex-col gap-3 w-1/3 mx-auto">
+                  <div className="flex flex-col gap-3 w-full px-3 md:w-2/3 lg:w-1/3  mx-auto">
                     <CustomInput
                       contentLabel={"Account"}
                       placeholder={"Type Your Account"}

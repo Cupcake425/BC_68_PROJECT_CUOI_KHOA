@@ -8,6 +8,7 @@ import SignUp from "../pages/SignUp/SignUp";
 import DanhMucKhoaHocList from "../pages/DanhMucKhoaHocList/DanhMucKhoaHocList";
 import KhoaHocDetail from "../pages/KhoaHocDetail/KhoaHocDetail";
 import TimKiemKhoaHoc from "../pages/TimKiemKhoaHoc/TimKiemKhoaHoc";
+import UserInformation from "../pages/UserInformation/UserInformation";
 
 const useRouter = () => {
   const Layout = () => {
@@ -30,6 +31,7 @@ const useRouter = () => {
         { path: path.danhMucKhoaHoc, element: <DanhMucKhoaHocList /> },
         { path: `${path.khoaHocDetail}/:id`, element: <KhoaHocDetail /> },
         { path: path.timKiemKhoaHoc, element: <TimKiemKhoaHoc /> },
+        { path: path.userInfor, element: <UserInformation /> },
       ],
     },
   ]);
