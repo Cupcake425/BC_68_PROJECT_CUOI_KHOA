@@ -6,7 +6,6 @@ import { quanLyKhoaHoc } from "../../services/quanLyKhoaHoc.service";
 import SearchForm from "../SearchForm/SearchForm";
 const Header = () => {
   const [khoaHoc, setKhoaHoc] = useState([]);
-  console.log(khoaHoc);
   useEffect(() => {
     quanLyKhoaHoc
       .layDanhMucKhoaHoc()

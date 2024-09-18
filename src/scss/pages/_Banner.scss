@@ -1,0 +1,23 @@
+@import "../color/color";
+.banner {
+  .container {
+    .banner_bg {
+      background: linear-gradient(90deg, #add8e6, #6c92ac);
+      background-size: cover;
+      background-repeat: no-repeat;
+      height: 1000px;
+      background-position: center;
+      height: 370px;
+      @media screen and (min-width: 1024px) {
+        background-image: url("/Banner/Banner.jpg");
+        height: 700px;
+      }
+      @media screen and (min-width: 1280px) {
+        height: 1000px;
+      }
+      h1 {
+        color: $sec-color;
+      }
+    }
+  }
+}

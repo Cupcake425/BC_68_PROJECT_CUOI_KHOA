@@ -1,0 +1,14 @@
+@import "../color/color";
+@import "../mixin/mixin";
+
+footer {
+  background-color: $main-color;
+  color: black;
+  .footer_main_menu {
+    a {
+      &:hover {
+        color: $sec-color;
+      }
+    }
+  }
+}
