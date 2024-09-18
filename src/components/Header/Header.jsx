@@ -1,11 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./../../scss/pages/_Header.scss";
 import { Link } from "react-router-dom";
 import { path } from "../../common/path";
 import { quanLyKhoaHoc } from "../../services/quanLyKhoaHoc.service";
 import SearchForm from "../SearchForm/SearchForm";
+import { isLoginContext } from "../../App";
+import { Dropdown, Space } from "antd";
 const Header = () => {
   const [khoaHoc, setKhoaHoc] = useState([]);
+  const { isLogin } = useContext(isLoginContext);
+  console.log(khoaHoc);
   useEffect(() => {
     quanLyKhoaHoc
       .layDanhMucKhoaHoc()
@@ -14,6 +18,44 @@ const Header = () => {
       })
       .catch((err) => console.log(err));
   }, []);
+  const items = [
+    {
+      key: "1",
+      label: <Link to={"/user-info"}>Xem thông tin cá nhân</Link>,
+    },
+  ];
+  const renderSignInSignUp = () => {
+    const user = JSON.parse(localStorage.getItem("userData"));
+    if (isLogin || user)
+      return (
+        <Space direction="vertical" className="me-5">
+          <Space wrap>
+            <Dropdown
+              menu={{
+                items,
+              }}
+              placement="bottomRight"
+            >
+              <div className="pe-8 text-orange-500 font-semibold text-xl">
+                <span>Hello {user?.hoTen}</span>
+              </div>
+            </Dropdown>
+          </Space>
+        </Space>
+      );
+    else {
+      return (
+        <div className="header_navbar space-x-2 lg:space-x-3 xl:space-x-5">
+          <Link to={path.login} className="header_login">
+            Login
+          </Link>
+          <Link to={path.signUp} className="header_signup">
+            Sign Up
+          </Link>
+        </div>
+      );
+    }
+  };
   return (
     <header className="sticky top-0 z-40">
       <div className="header_top">
@@ -25,14 +67,7 @@ const Header = () => {
               </Link>
               <SearchForm />
             </div>
-            <div className="header_navbar space-x-2 lg:space-x-3 xl:space-x-5">
-              <Link to={path.login} className="header_login">
-                Login
-              </Link>
-              <Link to={path.signUp} className="header_signup">
-                Sign Up
-              </Link>
-            </div>
+            {renderSignInSignUp()}
           </div>
         </div>
       </div>
