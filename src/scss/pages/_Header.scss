@@ -5,8 +5,6 @@ header {
     background-color: $main-color;
     .container {
       .header_content {
-        .header_logo {
-        }
         .header_navbar {
           .header_login {
             @include buttonStyle();
