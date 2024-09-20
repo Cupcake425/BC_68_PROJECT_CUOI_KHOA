@@ -77,7 +77,7 @@ const SignUp = () => {
     <div>
       <div className="LogInPage h-screen">
         <div className="container h-full">
-          <div className="content flex justify-around items-center h-full">
+          <div className="content flex max-md:flex-col justify-around items-center h-full ">
             <div className="leftPage text-center">
               <div className="title text-center">
                 <span className="text-3xl font-bold mb-3 inline-block">
@@ -93,7 +93,7 @@ const SignUp = () => {
                 details to get started
               </span>
             </div>
-            <div className="rightPagebg-white w-1/3">
+            <div className="rightPagebg-white w-1/3 max-md:w-2/3">
               <div className="titleForm text-center mb-6">
                 <span className="text-orange-500 font-bold text-3xl mb-3 inline-block">
                   Create an Account
@@ -108,7 +108,7 @@ const SignUp = () => {
               </div>
               <div>
                 <form action="" onSubmit={handleSubmit}>
-                  <div className="grid grid-cols-2 gap-3">
+                  <div className="grid grid-cols-2 gap-3 ">
                     <CustomInput
                       contentLabel={"Account"}
                       placeholder={"Type Your Account"}
