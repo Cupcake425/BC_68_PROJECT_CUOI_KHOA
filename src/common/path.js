@@ -7,4 +7,6 @@ export const path = {
   timKiemKhoaHoc: "/Tim-kiem-khoa-hoc",
   userInfo: "/user-info",
   userLessonResgister: "/user-lesson",
+  admin: "/admin",
+  listUser: "/admin/list-user",
 };

@@ -10,6 +10,8 @@ import KhoaHocDetail from "../pages/KhoaHocDetail/KhoaHocDetail";
 import TimKiemKhoaHoc from "../pages/TimKiemKhoaHoc/TimKiemKhoaHoc";
 import UserInformation from "../pages/UserInformation/UserInformation";
 import KhoaHocCuaUser from "../pages/KhoaHocCuaUser/KhoaHocCuaUser";
+import AdminTemplate from "../Template/Admin/AdminTemplate";
+import ListUser from "../pages/ListUser/ListUser";
 
 const useRouter = () => {
   const Layout = () => {
@@ -35,6 +37,11 @@ const useRouter = () => {
         { path: path.userInfo, element: <UserInformation /> },
         { path: path.userLessonResgister, element: <KhoaHocCuaUser /> },
       ],
+    },
+    {
+      path: path.admin,
+      element: <AdminTemplate />,
+      children: [{ path: path.listUser, element: <ListUser /> }],
     },
   ]);
   return router;

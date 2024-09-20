@@ -1,0 +1,16 @@
+.ant-modal-mask {
+  background-color: rgba(0, 0, 0, 0.1) !important;
+}
+.ant-modal {
+  top: 30px !important;
+}
+.ant-modal-root {
+  .ant-modal-wrap {
+    overflow: hidden;
+    .ant-modal {
+      .ant-modal-content {
+        box-shadow: none;
+      }
+    }
+  }
+}
