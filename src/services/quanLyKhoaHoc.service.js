@@ -24,4 +24,11 @@ export const quanLyKhoaHoc = {
       },
     });
   },
+  huyKhoaHoc: (token, data) => {
+    return http.post(`/QuanLyKhoaHoc/HuyGhiDanh`, data, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+  },
 };

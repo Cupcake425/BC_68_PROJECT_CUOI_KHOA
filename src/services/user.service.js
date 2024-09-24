@@ -18,8 +18,8 @@ export const userService = {
       },
     });
   },
-  LayDanhSachKhoaHocChoXetDuyet: (token) => {
-    return http.post(`/QuanLyNguoiDung/LayDanhSachKhoaHocChoXetDuyet`, {
+  LayDanhSachKhoaHocChoXetDuyet: (token, data) => {
+    return http.post(`/QuanLyNguoiDung/LayDanhSachKhoaHocChoXetDuyet`, data, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
