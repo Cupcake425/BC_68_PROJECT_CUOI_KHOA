@@ -9,6 +9,7 @@ import { NotificationContext } from "../../App";
 
 const KhoaHocCuaUser = () => {
   const [maKhoaHocList, setMaKhoaHocList] = useState([]);
+
   const [listKhoaHoc, setListKhoaHoc] = useState([]);
   const { handleNotification } = useContext(NotificationContext);
 
@@ -35,12 +36,12 @@ const KhoaHocCuaUser = () => {
 
   useEffect(() => {
     const userTaiKhoan = {
-      taiKhoan: user.taiKhoan,
+      taiKhoan: user?.taiKhoan,
     };
     userService
-      .LayDanhSachKhoaHocChoXetDuyet(user.accessToken, userTaiKhoan)
+      .LayDanhSachKhoaHocChoXetDuyet(user?.accessToken, userTaiKhoan)
       .then((res) => {
-        setMaKhoaHocList(res.data);
+        setMaKhoaHocList(res?.data);
       })
       .catch((err) => console.log(err));
   }, [user]);
@@ -48,11 +49,17 @@ const KhoaHocCuaUser = () => {
   useEffect(() => {
     const callApiDetail = async () => {
       try {
-        const promise = maKhoaHocList.map((item) => {
+        // Trên Swagger có file maKhoaHoc: "" làm crash không load được nên cần phải filter ra
+        const filterMaKhoaHocList = maKhoaHocList.filter(
+          (item) => item.maKhoaHoc
+        );
+        const promise = filterMaKhoaHocList?.map((item) => {
           return quanLyKhoaHoc.layThongTinKhoaHoc(item.maKhoaHoc);
         });
-        const result = await Promise.all(promise);
-        const listKhoaHocData = result.map((item) => {
+
+        const result = await Promise?.all(promise);
+
+        const listKhoaHocData = result?.map((item) => {
           return item.data;
         });
         setListKhoaHoc(listKhoaHocData);
@@ -60,7 +67,9 @@ const KhoaHocCuaUser = () => {
         console.log(err);
       }
     };
-    callApiDetail();
+    if (maKhoaHocList.length > 0) {
+      callApiDetail();
+    }
   }, [maKhoaHocList]);
 
   return (
