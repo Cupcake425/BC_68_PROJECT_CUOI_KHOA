@@ -26,6 +26,19 @@ const Header = () => {
       key: "2",
       label: <Link to={path.userLessonResgister}>Khóa học của tôi</Link>,
     },
+    {
+      key: "3",
+      label: (
+        <button
+          onClick={() => {
+            localStorage.removeItem("userData");
+            window.location.reload();
+          }}
+        >
+          Log out
+        </button>
+      ),
+    },
   ];
   const renderSignInSignUp = () => {
     const user = JSON.parse(localStorage.getItem("userData"));

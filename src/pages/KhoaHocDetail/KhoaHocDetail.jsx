@@ -5,7 +5,7 @@ import { path } from "../../common/path";
 
 const KhoaHocDetail = () => {
   const [khoaHoc, setKhoaHoc] = useState();
-  console.log(khoaHoc);
+
   const { id } = useParams();
 
   useEffect(() => {

@@ -77,16 +77,19 @@ const ListUser = () => {
       title: "Email",
       dataIndex: "email",
       key: "email",
+      responsive: ["md"],
     },
     {
       title: "Họ tên",
       dataIndex: "hoTen",
       key: "hoTen",
+      responsive: ["lg"],
     },
     {
       title: "Số điện thoại",
       dataIndex: "soDt",
       key: "soDt",
+      responsive: ["xl"],
     },
     {
       title: "Chức vụ",
@@ -96,6 +99,7 @@ const ListUser = () => {
           {text}
         </Tag>
       ),
+      responsive: ["xl"],
     },
     {
       title: "Action",
