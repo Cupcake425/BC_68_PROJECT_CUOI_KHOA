@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "../../scss/pages/_UserInformation.scss";
 import CustomInput from "../../components/InputCustom/CustomInput";
 import { Select } from "antd";
@@ -8,11 +8,21 @@ import { notiValidation } from "../../common/NotiValidation";
 import { userService } from "../../services/user.service";
 import { NotificationContext } from "../../App";
 const UserInformation = () => {
-  const { taiKhoan, hoTen, soDT, maNhom, email, maLoaiNguoiDung, soDt } =
-    JSON.parse(localStorage.getItem("userData"));
+  const [UserInfor, setUserInfor] = useState({
+    taiKhoan: "",
+    hoTen: "",
+    soDT: "",
+    maNhom: "",
+    email: "",
+    maLoaiNguoiDung: "",
+    soDt: "",
+  });
   const { handleNotification } = useContext(NotificationContext);
   const [isEditing, setIsEditing] = useState(false);
-
+  useEffect(() => {
+    const localUser = JSON.parse(localStorage.getItem("userData"));
+    if (localUser) setUserInfor(localUser);
+  }, []);
   const {
     values,
     errors,
@@ -33,8 +43,9 @@ const UserInformation = () => {
     },
     onSubmit: (values) => {
       console.log("fuck: ", values);
+      const accessToken = JSON.parse(localStorage.getItem("accessToken")) || "";
       userService
-        .updateUser(values)
+        .updateUser(accessToken, values)
         .then((res) => {
           handleNotification("Update User Infor successfully!", "success");
 
@@ -223,37 +234,37 @@ const UserInformation = () => {
           <span>
             Tài Khoản:{" "}
             <span className="font-semibold" onClick={toggleEditMode}>
-              {taiKhoan}
+              {UserInfor.taiKhoan}
             </span>
           </span>
           <span>
             Email:{" "}
             <span className="font-semibold" onClick={toggleEditMode}>
-              {email}
+              {UserInfor.email}
             </span>{" "}
           </span>
           <span>
             Họ và Tên:{" "}
             <span className="font-semibold" onClick={toggleEditMode}>
-              {hoTen}
+              {UserInfor.hoTen}
             </span>
           </span>
           <span>
             Mã nhóm:{" "}
             <span className="font-semibold" onClick={toggleEditMode}>
-              {maNhom}
+              {UserInfor.maNhom}
             </span>
           </span>
           <span>
             Số điện thoại:{" "}
             <span className="font-semibold" onClick={toggleEditMode}>
-              {soDT}
+              {UserInfor.soDT}
             </span>
           </span>
           <span>
             Mã loại người dùng:{" "}
             <span className="font-semibold" onClick={toggleEditMode}>
-              {maLoaiNguoiDung}
+              {UserInfor.maLoaiNguoiDung}
             </span>
           </span>
           <span></span>

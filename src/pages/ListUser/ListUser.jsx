@@ -18,7 +18,7 @@ const ListUser = () => {
     email: "string",
   });
   const { user } = useSelector((state) => state.authSlice);
-
+  console.log("user in listUser: ", user);
   const { handleNotification = () => {} } = useContext(NotificationContext);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const showModal = (record) => {

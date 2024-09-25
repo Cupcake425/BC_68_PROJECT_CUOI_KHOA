@@ -35,6 +35,10 @@ const Login = () => {
             }, 2000);
             dispatch(setValueUser(res.data));
             localStorage.setItem("userData", JSON.stringify(res.data));
+            localStorage.setItem(
+              "accessToken",
+              JSON.stringify(res.data.accessToken)
+            );
           })
           .catch((err) => {
             console.log("err in sign in: ", err);
