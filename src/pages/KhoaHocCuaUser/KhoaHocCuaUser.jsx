@@ -78,47 +78,51 @@ const KhoaHocCuaUser = () => {
         <h1 className="text-center text-3xl font-bold">
           Các khóa học đã tham gia
         </h1>
-        <div className="grid grid-cols-4 gap-5">
-          {listKhoaHoc?.map((item, index) => {
-            return (
-              <>
-                <div
-                  key={index}
-                  className="user_khoa_hoc_item border border-gray-300 rounded-lg mt-5 flex flex-col"
-                >
-                  <Link to={`${path.khoaHocDetail}/${item?.maKhoaHoc}`}>
-                    <img
-                      src={item?.hinhAnh}
-                      alt="item"
-                      className="border border-b-gray-300"
-                      style={{
-                        borderTopLeftRadius: 8,
-                        borderTopRightRadius: 8,
-                      }}
-                    />
-                  </Link>
+        {maKhoaHocList.length == 0 ? (
+          <p>Bạn chưa đăng ký khóa học nào hết</p>
+        ) : (
+          <div className="grid grid-cols-4 gap-5">
+            {listKhoaHoc?.map((item, index) => {
+              return (
+                <>
+                  <div
+                    key={index}
+                    className="user_khoa_hoc_item border border-gray-300 rounded-lg mt-5 flex flex-col"
+                  >
+                    <Link to={`${path.khoaHocDetail}/${item?.maKhoaHoc}`}>
+                      <img
+                        src={item?.hinhAnh}
+                        alt="item"
+                        className="border border-b-gray-300"
+                        style={{
+                          borderTopLeftRadius: 8,
+                          borderTopRightRadius: 8,
+                        }}
+                      />
+                    </Link>
 
-                  <div className="flex flex-col p-5 justify-between">
-                    <div>
-                      <h2 className="text-xl font-bold">{`${item?.tenKhoaHoc} `}</h2>
-                      <h2>{`Mã khóa học : ${item.maKhoaHoc}`}</h2>
+                    <div className="flex flex-col p-5 justify-between">
+                      <div>
+                        <h2 className="text-xl font-bold">{`${item?.tenKhoaHoc} `}</h2>
+                        <h2>{`Mã khóa học : ${item.maKhoaHoc}`}</h2>
+                      </div>
+                      <p className="font-semibold">{`Tên giảng viên: ${item?.nguoiTao?.hoTen}`}</p>
+                      <p>{`Ngày tạo: ${item?.ngayTao} - lượt xem: ${item?.luotXem}`}</p>
+                      <button
+                        className="hover:bg-red-500 border border-solid w-full mt-2"
+                        onClick={() => {
+                          handleCancelLesson(item.maKhoaHoc);
+                        }}
+                      >
+                        Hủy
+                      </button>
                     </div>
-                    <p className="font-semibold">{`Tên giảng viên: ${item?.nguoiTao?.hoTen}`}</p>
-                    <p>{`Ngày tạo: ${item?.ngayTao} - lượt xem: ${item?.luotXem}`}</p>
-                    <button
-                      className="hover:bg-red-500 border border-solid w-full mt-2"
-                      onClick={() => {
-                        handleCancelLesson(item.maKhoaHoc);
-                      }}
-                    >
-                      Hủy
-                    </button>
                   </div>
-                </div>
-              </>
-            );
-          })}
-        </div>
+                </>
+              );
+            })}
+          </div>
+        )}
       </div>
     </div>
   );

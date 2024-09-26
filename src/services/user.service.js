@@ -25,4 +25,22 @@ export const userService = {
       },
     });
   },
+  LayDanhSachKhoaHocChuaGhiDanh: (TaiKhoan, token, data) => {
+    return http.post(
+      `/QuanLyNguoiDung/LayDanhSachKhoaHocChuaGhiDanh?TaiKhoan=${TaiKhoan}`,
+      data,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+  },
+  LayDanhSachKhoaHocDaXetDuyet: (token, data) => {
+    return http.post(`/QuanLyNguoiDung/LayDanhSachKhoaHocDaXetDuyet`, data, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+  },
 };
