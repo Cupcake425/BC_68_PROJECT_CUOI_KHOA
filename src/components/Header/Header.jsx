@@ -32,6 +32,7 @@ const Header = () => {
         <button
           onClick={() => {
             localStorage.removeItem("userData");
+            localStorage.removeItem("accessToken");
             window.location.reload();
           }}
         >

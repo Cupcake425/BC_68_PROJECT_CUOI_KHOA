@@ -46,14 +46,14 @@ const Footer = () => {
             <div className="space-y-3">
               <h3 className="font-bold text-xl">Liên lạc</h3>
               <p>
-                <i class="fa-solid fa-location-dot me-3"></i>
+                <i className="fa-solid fa-location-dot me-3"></i>
                 45 Nguyễn Khắc Nhu, Phường Cô Giang, Quận 1, Hồ Chí Minh
               </p>
               <p>
-                <i class="fa-solid fa-phone me-3"></i>84 28 7105 9999
+                <i className="fa-solid fa-phone me-3"></i>84 28 7105 9999
               </p>
               <p>
-                <i class="fa-solid fa-envelope me-3"></i>
+                <i className="fa-solid fa-envelope me-3"></i>
                 elearning@edu.vn
               </p>
             </div>
