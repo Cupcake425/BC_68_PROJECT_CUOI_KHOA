@@ -31,4 +31,11 @@ export const quanLyKhoaHoc = {
       },
     });
   },
+  ghiDanhKhoaHoc: (token, data) => {
+    return http.post(`/QuanLyKhoaHoc/GhiDanhKhoaHoc`, data, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+  },
 };

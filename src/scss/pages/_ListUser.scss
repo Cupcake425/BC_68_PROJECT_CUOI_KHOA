@@ -1,5 +1,6 @@
 .ant-modal-mask {
   background-color: rgba(0, 0, 0, 0.1) !important;
+  overflow: hidden !important;
 }
 .ant-modal {
   top: 30px !important;
@@ -8,6 +9,7 @@
   .ant-modal-wrap {
     overflow: hidden;
     .ant-modal {
+      width: 800px !important;
       .ant-modal-content {
         box-shadow: none;
       }
