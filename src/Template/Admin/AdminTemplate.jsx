@@ -7,8 +7,8 @@ import {
   VideoCameraOutlined,
   ApartmentOutlined,
 } from "@ant-design/icons";
-import { Button, Layout, Menu, theme } from "antd";
-import { Link, Outlet } from "react-router-dom";
+import { Button, Layout, Menu, Skeleton, theme } from "antd";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 import { path } from "../../common/path";
 const { Header, Sider, Content } = Layout;
 const AdminTemplate = () => {
@@ -17,6 +17,21 @@ const AdminTemplate = () => {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
 
+  const [userInfor, setUserInfor] = useState({});
+  const [isAdmin, setIsAdmin] = useState(false);
+  const navigate = useNavigate();
+  useEffect(() => {
+    const localUser = JSON.parse(localStorage.getItem("userData"));
+    if (localUser) {
+      if (!localUser || localUser?.maLoaiNguoiDung !== "HV") navigate("/");
+      else {
+        setUserInfor(localUser);
+        setIsAdmin(true);
+      }
+    }
+  }, []);
+
+  if (!isAdmin) return <Skeleton active />;
   return (
     <Layout className="min-h-screen">
       <Sider trigger={null} collapsible collapsed={collapsed}>
@@ -33,8 +48,10 @@ const AdminTemplate = () => {
             },
             {
               key: "2",
-              icon: <VideoCameraOutlined />,
-              label: <Link to={"/admin/create-user"}>Thêm người dùng</Link>,
+              icon: <ApartmentOutlined />,
+              label: (
+                <Link to={"/admin/course-management"}>Quản lý khóa học</Link>
+              ),
             },
             {
               key: "3",
@@ -55,6 +72,7 @@ const AdminTemplate = () => {
             padding: 0,
             background: colorBgContainer,
           }}
+          className="flex justify-between"
         >
           <Button
             type="text"
@@ -66,6 +84,9 @@ const AdminTemplate = () => {
               height: 64,
             }}
           />
+          <div>
+            <span>hello world !</span>
+          </div>
         </Header>
         <Content
           style={{

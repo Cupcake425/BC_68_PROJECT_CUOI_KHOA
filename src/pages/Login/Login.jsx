@@ -14,7 +14,7 @@ const Login = () => {
   const { handleNotification } = useContext(NotificationContext);
   const { setIsLogin, isLogin } = useContext(isLoginContext);
   const navigate = useNavigate();
-  const [logInCheck, setLogInCheck] = useState(true);
+  const [logInCheck, setLogInCheck] = useState(false);
   const dispatch = useDispatch();
 
   const { values, errors, handleChange, handleBlur, handleSubmit, touched } =
@@ -68,8 +68,7 @@ const Login = () => {
       setLogInCheck(false); // Mark check as done but no redirect since not logged in
     }
   }, [isLogin, navigate]);
-
-  if (logInCheck) return <Skeleton active />;
+  if (!logInCheck) return <Skeleton active />;
 
   return (
     <div>
