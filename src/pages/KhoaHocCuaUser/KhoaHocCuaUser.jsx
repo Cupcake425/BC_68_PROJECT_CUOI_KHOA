@@ -9,12 +9,9 @@ import { NotificationContext } from "../../App";
 
 const KhoaHocCuaUser = () => {
   const [maKhoaHocList, setMaKhoaHocList] = useState([]);
-
   const [listKhoaHoc, setListKhoaHoc] = useState([]);
   const { handleNotification } = useContext(NotificationContext);
-
   const { user } = useSelector((state) => state.authSlice);
-
   const handleCancelLesson = (maKhoaHoc) => {
     const userData = {
       maKhoaHoc: maKhoaHoc,
@@ -56,9 +53,7 @@ const KhoaHocCuaUser = () => {
         const promise = filterMaKhoaHocList?.map((item) => {
           return quanLyKhoaHoc.layThongTinKhoaHoc(item.maKhoaHoc);
         });
-
         const result = await Promise?.all(promise);
-
         const listKhoaHocData = result?.map((item) => {
           return item.data;
         });
@@ -67,9 +62,7 @@ const KhoaHocCuaUser = () => {
         console.log(err);
       }
     };
-    if (maKhoaHocList.length > 0) {
-      callApiDetail();
-    }
+    callApiDetail();
   }, [maKhoaHocList]);
 
   return (
@@ -79,15 +72,17 @@ const KhoaHocCuaUser = () => {
           Các khóa học đã tham gia
         </h1>
         {maKhoaHocList.length == 0 ? (
-          <p>Bạn chưa đăng ký khóa học nào hết</p>
+          <div className="h-screen">
+            <p>Bạn chưa đăng ký khóa học nào hết</p>
+          </div>
         ) : (
-          <div className="grid grid-cols-4 gap-5">
+          <div className="flex flex-wrap gap-5 justify-center items-center">
             {listKhoaHoc?.map((item, index) => {
               return (
                 <>
                   <div
                     key={index}
-                    className="user_khoa_hoc_item border border-gray-300 rounded-lg mt-5 flex flex-col"
+                    className="user_khoa_hoc_item border border-gray-300 rounded-lg mt-5 flex flex-col max-w-[367px] max-h-[550px]"
                   >
                     <Link to={`${path.khoaHocDetail}/${item?.maKhoaHoc}`}>
                       <img

@@ -5,6 +5,37 @@ header {
     background-color: $main-color;
     .container {
       .header_content {
+        .header_logo {
+          .sidebar_wrapper {
+            a {
+              &:hover {
+                color: $sec-color;
+              }
+            }
+            .sidebar {
+              display: flex;
+              flex-direction: column;
+              height: 100%;
+              padding: 24px 12px;
+              position: fixed;
+              top: 0;
+              left: 0;
+              width: 40%;
+              z-index: 1000;
+              background-color: white;
+            }
+            .sidebar_overlay {
+              position: fixed;
+              background-color: rgba(0, 0, 0, 0.5);
+              z-index: 999;
+              width: 100vw;
+              transition: all 0.2s ease;
+              overflow: hidden;
+              height: 100vh;
+              left: 0;
+            }
+          }
+        }
         .header_navbar {
           .header_login {
             @include buttonStyle();

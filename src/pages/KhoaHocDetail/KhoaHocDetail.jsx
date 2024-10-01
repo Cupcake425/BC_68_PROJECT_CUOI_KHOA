@@ -5,9 +5,8 @@ import { path } from "../../common/path";
 
 const KhoaHocDetail = () => {
   const [khoaHoc, setKhoaHoc] = useState();
-
+  console.log(khoaHoc);
   const { id } = useParams();
-
   useEffect(() => {
     quanLyKhoaHoc
       .layThongTinKhoaHoc(id)
@@ -29,6 +28,7 @@ const KhoaHocDetail = () => {
         <span> &gt; {khoaHoc?.biDanh}</span>
       </div>
       <h1 className="text-5xl mt-5 font-bold">{khoaHoc?.tenKhoaHoc}</h1>
+      <p className="mt-2 text-2xl font-semibold">{`Giảng Viên ${khoaHoc?.nguoiTao?.hoTen} - Ngày tạo: ${khoaHoc?.ngayTao}`}</p>
       <img src={khoaHoc?.hinhAnh} alt="hinhAnh" className="w-full mt-5" />
       <p className="mt-5 text-xl">{khoaHoc?.moTa}</p>
     </div>

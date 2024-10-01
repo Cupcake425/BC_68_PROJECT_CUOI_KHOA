@@ -295,7 +295,6 @@ const ListUser = () => {
             <button
               onClick={() => {
                 showModal(record);
-                console.log(record);
               }}
               className="bg-yellow-500 text-white py-2 lg:px-5 px-2 text-sm lg:text-base rounded hover:bg-yellow-500/90 duration-300"
             >
@@ -360,7 +359,7 @@ const ListUser = () => {
                   </label>
                   <select
                     name="maNhom"
-                    value={userValue.maNhom}
+                    value={userValue.maNhom || "GP01"}
                     onChange={handleChangeValue}
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
                   >
