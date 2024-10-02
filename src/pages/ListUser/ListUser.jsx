@@ -100,10 +100,35 @@ const ListUser = () => {
         setListKhoaHocChoXacThuc((prevList) =>
           prevList.filter((course) => course.maKhoaHoc !== maKhoaHoc)
         );
+        setListKhoaHocDaXacThuc((prevList) =>
+          prevList.filter((course) => course.maKhoaHoc !== maKhoaHoc)
+        );
       })
       .catch((err) => {
         handleNotification(err.response.data, "error");
       });
+  };
+  const fetchListKhoaHocChoXacThuc = () => {
+    const userTaiKhoan = {
+      taiKhoan: selectedUser,
+    };
+    userService
+      .LayDanhSachKhoaHocChoXetDuyet(user?.accessToken, userTaiKhoan)
+      .then((res) => {
+        setListKhoaHocChoXacThuc(res.data);
+      })
+      .catch((err) => console.log(err));
+  };
+  const fetchListKhoaHocDaXacThuc = () => {
+    const userTaiKhoan = {
+      taiKhoan: selectedUser,
+    };
+    userService
+      .LayDanhSachKhoaHocDaXetDuyet(user?.accessToken, userTaiKhoan)
+      .then((res) => {
+        setListKhoaHocDaXacThuc(res.data);
+      })
+      .catch((err) => console.log(err));
   };
   const handleGhiDanh = () => {
     const registrationData = {
@@ -114,6 +139,7 @@ const ListUser = () => {
       .dangKyKhoaHoc(user?.accessToken, registrationData)
       .then(() => {
         handleNotification("Đăng ký khóa học thành công!", "success");
+        fetchListKhoaHocChoXacThuc();
       })
       .catch((err) => {
         handleNotification(err.message, "error");
@@ -132,6 +158,7 @@ const ListUser = () => {
         setListKhoaHocChoXacThuc((prevList) =>
           prevList.filter((course) => course.maKhoaHoc !== maKhoaHoc)
         );
+        fetchListKhoaHocDaXacThuc();
       })
       .catch((err) => handleNotification(err.response, "error"));
   };
@@ -145,28 +172,9 @@ const ListUser = () => {
   }, []);
 
   useEffect(() => {
-    const userTaiKhoan = {
-      taiKhoan: selectedUser,
-    };
-    userService
-      .LayDanhSachKhoaHocChoXetDuyet(user?.accessToken, userTaiKhoan)
-      .then((res) => {
-        setListKhoaHocChoXacThuc(res.data);
-      })
-      .catch((err) => console.log(err));
-  }, [selectedUser, listKhoaHocChoXacThuc]);
-
-  useEffect(() => {
-    const userTaiKhoan = {
-      taiKhoan: selectedUser,
-    };
-    userService
-      .LayDanhSachKhoaHocDaXetDuyet(user?.accessToken, userTaiKhoan)
-      .then((res) => {
-        setListKhoaHocDaXacThuc(res.data);
-      })
-      .catch((err) => console.log(err));
-  }, [selectedUser, listKhoaHocDaXacThuc]);
+    fetchListKhoaHocChoXacThuc();
+    fetchListKhoaHocDaXacThuc();
+  }, [selectedUser]);
 
   const columnsDanhSachDaXetDuyet = [
     {
