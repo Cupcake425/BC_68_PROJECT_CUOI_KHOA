@@ -34,7 +34,7 @@ const AdminTemplate = () => {
             {
               key: "2",
               icon: <VideoCameraOutlined />,
-              label: <Link to={"/admin/create-user"}>Thêm người dùng</Link>,
+              label: <Link to={path.createUser}>Thêm người dùng</Link>,
             },
             {
               key: "3",

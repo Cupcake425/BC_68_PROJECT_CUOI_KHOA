@@ -12,6 +12,7 @@ import UserInformation from "../pages/UserInformation/UserInformation";
 import KhoaHocCuaUser from "../pages/KhoaHocCuaUser/KhoaHocCuaUser";
 import AdminTemplate from "../Template/Admin/AdminTemplate";
 import ListUser from "../pages/ListUser/ListUser";
+import CreateUser from "../pages/CreateUser/CreateUser";
 
 const useRouter = () => {
   const Layout = () => {
@@ -41,7 +42,10 @@ const useRouter = () => {
     {
       path: path.admin,
       element: <AdminTemplate />,
-      children: [{ path: path.listUser, element: <ListUser /> }],
+      children: [
+        { path: path.listUser, element: <ListUser /> },
+        { path: path.createUser, element: <CreateUser /> },
+      ],
     },
   ]);
   return router;

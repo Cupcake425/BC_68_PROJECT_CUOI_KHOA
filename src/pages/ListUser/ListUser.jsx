@@ -359,10 +359,10 @@ const ListUser = () => {
                   </label>
                   <select
                     name="maNhom"
-                    value={userValue.maNhom || "GP01"}
                     onChange={handleChangeValue}
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
                   >
+                    <option value="">Chọn mã nhóm</option>
                     <option value="GP01">GP01</option>
                     <option value="GP02">GP02</option>
                     <option value="GP03">GP03</option>
