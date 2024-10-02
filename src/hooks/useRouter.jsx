@@ -12,6 +12,7 @@ import UserInformation from "../pages/UserInformation/UserInformation";
 import KhoaHocCuaUser from "../pages/KhoaHocCuaUser/KhoaHocCuaUser";
 import AdminTemplate from "../Template/Admin/AdminTemplate";
 import ListUser from "../pages/ListUser/ListUser";
+import CreateUser from "../pages/CreateUser/CreateUser";
 import QuanLyKhoaHoc from "../pages/QuanLyKhoaHoc/QuanLyKhoaHoc";
 
 const useRouter = () => {
@@ -42,11 +43,7 @@ const useRouter = () => {
     {
       path: path.admin,
       element: <AdminTemplate />,
-      children: [
-        { path: path.listUser, element: <ListUser /> },
-        { path: path.adminInfor, element: <UserInformation /> },
-        { path: path.quanLyKhoaHoc, element: <QuanLyKhoaHoc /> },
-      ],
+      children: [{ path: path.listUser, element: <ListUser /> }],
     },
   ]);
   return router;

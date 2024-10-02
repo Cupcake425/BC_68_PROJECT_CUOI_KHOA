@@ -15,10 +15,10 @@ const Footer = () => {
       .catch((err) => console.log(err));
   }, []);
   return (
-    <footer className="mt-5">
+    <footer>
       <div className="container">
         <div className="py-5">
-          <div className="grid grid-cols-3 gap-5">
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5">
             <div>
               <Link to={path.home}>
                 <img src="/Icon/Logo.png" alt="Logo" />

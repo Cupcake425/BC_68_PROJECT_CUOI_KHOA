@@ -37,13 +37,13 @@ const DanhMucKhoaHocList = () => {
   return (
     <div className="listLesson">
       <div className="container">
-        <div className="grid grid-cols-4 gap-5">
+        <div className="flex flex-wrap gap-5 justify-center items-center">
           {listLesson.map((item, index) => {
             return (
               <>
                 <div
                   key={index}
-                  className="listLesson_item border border-gray-300 rounded-lg mt-5 flex flex-col"
+                  className="listLesson_item border border-gray-300 rounded-lg mt-5 flex flex-col max-w-[367px] max-h-[550px]"
                 >
                   <Link to={`${path.khoaHocDetail}/${item?.maKhoaHoc}`}>
                     <img

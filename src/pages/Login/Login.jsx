@@ -72,7 +72,6 @@ const Login = () => {
 
   return (
     <div>
-      {" "}
       <div className="LogInPage">
         <div className="container">
           <div className="content h-screen pt-20">

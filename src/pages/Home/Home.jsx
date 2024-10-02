@@ -29,18 +29,18 @@ const Home = () => {
         </h1>
         <div className="listLesson">
           <div className="container">
-            <div className="grid grid-cols-4 gap-5">
+            <div className="flex flex-wrap gap-5 justify-center items-center">
               {khoaHoc.map((item, index) => {
                 return (
                   <Link
                     to={`${path.khoaHocDetail}/${item?.maKhoaHoc}`}
                     key={index}
-                    className="listLesson_item border border-gray-300 rounded-lg mt-5 flex flex-col"
+                    className="listLesson_item border border-gray-300 rounded-lg mt-5 flex flex-col max-w-[367px] max-h-[500px]"
                   >
                     <img
                       src={item?.hinhAnh}
                       alt="item"
-                      className="border border-b-gray-300"
+                      className="border border-b-gray-300 "
                       style={{
                         borderTopLeftRadius: 8,
                         borderTopRightRadius: 8,
@@ -48,7 +48,7 @@ const Home = () => {
                     />
                     <div className="flex flex-col p-5 justify-between">
                       <div>
-                        <h2 className="text-xl font-bold">{`${item?.tenKhoaHoc} `}</h2>
+                        <h2 className="text-xl font-bold ">{`${item?.tenKhoaHoc} `}</h2>
                         <h2>{`Mã khóa học : ${item.maKhoaHoc}`}</h2>
                       </div>
                       <p className="font-semibold">{`Tên giảng viên: ${item?.nguoiTao?.hoTen}`}</p>

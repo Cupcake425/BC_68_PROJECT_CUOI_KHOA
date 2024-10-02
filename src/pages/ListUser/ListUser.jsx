@@ -102,12 +102,40 @@ const ListUser = () => {
         setListKhoaHocChoXacThuc((prevList) =>
           prevList.filter((course) => course.maKhoaHoc !== maKhoaHoc)
         );
+        setListKhoaHocDaXacThuc((prevList) =>
+          prevList.filter((course) => course.maKhoaHoc !== maKhoaHoc)
+        );
       })
       .catch((err) => {
         handleNotification(err.response.data, "error");
       });
   };
+<<<<<<< HEAD
 
+=======
+  const fetchListKhoaHocChoXacThuc = () => {
+    const userTaiKhoan = {
+      taiKhoan: selectedUser,
+    };
+    userService
+      .LayDanhSachKhoaHocChoXetDuyet(user?.accessToken, userTaiKhoan)
+      .then((res) => {
+        setListKhoaHocChoXacThuc(res.data);
+      })
+      .catch((err) => console.log(err));
+  };
+  const fetchListKhoaHocDaXacThuc = () => {
+    const userTaiKhoan = {
+      taiKhoan: selectedUser,
+    };
+    userService
+      .LayDanhSachKhoaHocDaXetDuyet(user?.accessToken, userTaiKhoan)
+      .then((res) => {
+        setListKhoaHocDaXacThuc(res.data);
+      })
+      .catch((err) => console.log(err));
+  };
+>>>>>>> fa5f7d72e318f4790cb275ae871be311eced2596
   const handleGhiDanh = () => {
     const registrationData = {
       taiKhoan: selectedUser,
@@ -117,6 +145,7 @@ const ListUser = () => {
       .dangKyKhoaHoc(user?.accessToken, registrationData)
       .then(() => {
         handleNotification("Đăng ký khóa học thành công!", "success");
+        fetchListKhoaHocChoXacThuc();
       })
       .catch((err) => {
         handleNotification(err.message, "error");
@@ -136,6 +165,7 @@ const ListUser = () => {
         setListKhoaHocChoXacThuc((prevList) =>
           prevList.filter((course) => course.maKhoaHoc !== maKhoaHoc)
         );
+        fetchListKhoaHocDaXacThuc();
       })
       .catch((err) => handleNotification(err.response, "error"));
   };
@@ -150,28 +180,9 @@ const ListUser = () => {
   }, []);
 
   useEffect(() => {
-    const userTaiKhoan = {
-      taiKhoan: selectedUser,
-    };
-    userService
-      .LayDanhSachKhoaHocChoXetDuyet(user?.accessToken, userTaiKhoan)
-      .then((res) => {
-        setListKhoaHocChoXacThuc(res.data);
-      })
-      .catch((err) => console.log(err));
-  }, [selectedUser, listKhoaHocChoXacThuc]);
-
-  useEffect(() => {
-    const userTaiKhoan = {
-      taiKhoan: selectedUser,
-    };
-    userService
-      .LayDanhSachKhoaHocDaXetDuyet(user?.accessToken, userTaiKhoan)
-      .then((res) => {
-        setListKhoaHocDaXacThuc(res.data);
-      })
-      .catch((err) => console.log(err));
-  }, [selectedUser, listKhoaHocDaXacThuc]);
+    fetchListKhoaHocChoXacThuc();
+    fetchListKhoaHocDaXacThuc();
+  }, [selectedUser]);
 
   const columnsDanhSachDaXetDuyet = [
     {
@@ -302,7 +313,6 @@ const ListUser = () => {
             <button
               onClick={() => {
                 showModal(record);
-                console.log(record);
               }}
               className="bg-yellow-500 text-white py-2 lg:px-5 px-2 text-sm lg:text-base rounded hover:bg-yellow-500/90 duration-300"
             >
@@ -367,10 +377,10 @@ const ListUser = () => {
                   </label>
                   <select
                     name="maNhom"
-                    value={userValue.maNhom}
                     onChange={handleChangeValue}
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
                   >
+                    <option value="">Chọn mã nhóm</option>
                     <option value="GP01">GP01</option>
                     <option value="GP02">GP02</option>
                     <option value="GP03">GP03</option>

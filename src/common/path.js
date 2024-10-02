@@ -10,5 +10,6 @@ export const path = {
   userLessonResgister: "/user-lesson",
   admin: "/admin",
   listUser: "/admin/list-user",
+  createUser: "/admin/create-user",
   quanLyKhoaHoc: "course-management",
 };

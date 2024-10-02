@@ -12,6 +12,13 @@ export const userService = {
   getAllUser: (maNhom = "GP01") => {
     return http.get(`/QuanLyNguoiDung/LayDanhSachNguoiDung?MaNhom=${maNhom}`);
   },
+  addUser: (token, data) => {
+    return http.post(`/QuanLyNguoiDung/ThemNguoiDung`, data, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+  },
   layDanhSachHocVienChoXacThuc: (data) => {
     return http.post("/QuanLyNguoiDung/LayDanhSachHocVienChoXetDuyet", data);
   },
