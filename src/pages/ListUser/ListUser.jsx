@@ -110,9 +110,7 @@ const ListUser = () => {
         handleNotification(err.response.data, "error");
       });
   };
-<<<<<<< HEAD
 
-=======
   const fetchListKhoaHocChoXacThuc = () => {
     const userTaiKhoan = {
       taiKhoan: selectedUser,
@@ -135,14 +133,13 @@ const ListUser = () => {
       })
       .catch((err) => console.log(err));
   };
->>>>>>> fa5f7d72e318f4790cb275ae871be311eced2596
   const handleGhiDanh = () => {
     const registrationData = {
       taiKhoan: selectedUser,
       maKhoaHoc: selectedGhiDanh,
     };
     quanLyKhoaHoc
-      .dangKyKhoaHoc(user?.accessToken, registrationData)
+      .dangKyKhoaHoc(registrationData)
       .then(() => {
         handleNotification("Đăng ký khóa học thành công!", "success");
         fetchListKhoaHocChoXacThuc();
@@ -377,6 +374,7 @@ const ListUser = () => {
                   </label>
                   <select
                     name="maNhom"
+                    value={userValue.maNhom}
                     onChange={handleChangeValue}
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
                   >

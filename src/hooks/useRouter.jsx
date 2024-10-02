@@ -43,7 +43,11 @@ const useRouter = () => {
     {
       path: path.admin,
       element: <AdminTemplate />,
-      children: [{ path: path.listUser, element: <ListUser /> }],
+      children: [
+        { path: path.listUser, element: <ListUser /> },
+        { path: path.quanLyKhoaHoc, element: <QuanLyKhoaHoc /> },
+        { path: path.createUser, element: <CreateUser /> },
+      ],
     },
   ]);
   return router;
