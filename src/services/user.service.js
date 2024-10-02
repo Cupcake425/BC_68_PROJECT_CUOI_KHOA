@@ -1,3 +1,4 @@
+import { data } from "autoprefixer";
 import { http } from "./config";
 
 export const userService = {
@@ -11,12 +12,29 @@ export const userService = {
   getAllUser: (maNhom = "GP01") => {
     return http.get(`/QuanLyNguoiDung/LayDanhSachNguoiDung?MaNhom=${maNhom}`);
   },
+  layDanhSachHocVienChoXacThuc: (data) => {
+    return http.post("/QuanLyNguoiDung/LayDanhSachHocVienChoXetDuyet", data);
+  },
+  layDanhSachNguoiDungChuaGhiDanh: () => {
+    return http.post("/QuanLyNguoiDung/LayDanhSachNguoiDungChuaGhiDanh", {
+      MaKhoaHoc: JSON.parse(localStorage.getItem("maKhoaHoc")),
+    });
+  },
+  layDanhSachHocVienDaGhiDanh: (data) => {
+    return http.post("/QuanLyNguoiDung/LayDanhSachHocVienKhoaHoc", data);
+  },
   deleteUser: (id, token) => {
     return http.delete(`/QuanLyNguoiDung/XoaNguoiDung?TaiKhoan=${id}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     });
+  },
+  ghiDanhHocVienOnSearch: (data) => {
+    return http.post("/QuanLyKhoaHoc/GhiDanhKhoaHoc", data);
+  },
+  cancelJoin: (data) => {
+    return http.post("/QuanLyKhoaHoc/HuyGhiDanh", data);
   },
   LayDanhSachKhoaHocChoXetDuyet: (token, data) => {
     return http.post(`/QuanLyNguoiDung/LayDanhSachKhoaHocChoXetDuyet`, data, {

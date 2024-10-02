@@ -42,7 +42,6 @@ const UserInformation = () => {
       maLoaiNguoiDung: "",
     },
     onSubmit: (values) => {
-      console.log("fuck: ", values);
       const accessToken = JSON.parse(localStorage.getItem("accessToken")) || "";
       userService
         .updateUser(accessToken, values)
@@ -55,6 +54,7 @@ const UserInformation = () => {
             "userData",
             JSON.stringify({ ...res.data, soDT: res.data["soDt"] })
           );
+          console.log("res: ", res.data);
         })
         .catch((err) => {
           console.log("err in update User infor up: ", err);
@@ -188,7 +188,7 @@ const UserInformation = () => {
                 showSearch
                 optionFilterProp="label"
                 value={values["maNhom"]}
-                //   onChange={(value) => setFieldValue("maNhom", value)}
+                onChange={(value) => setFieldValue("maNhom", value)}
                 options={[
                   {
                     value: "GP01",

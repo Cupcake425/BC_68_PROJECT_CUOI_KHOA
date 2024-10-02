@@ -1,6 +1,9 @@
 import { http } from "./config";
 
 export const quanLyKhoaHoc = {
+  layDanhSachKhoaHocOnAdmin: (maNhom) => {
+    return http.get(`/QuanLyKhoaHoc/LayDanhSachKhoaHoc?MaNhom=${maNhom}`);
+  },
   layDanhSachKhoaHoc: (data) => {
     return http.get(
       `/QuanLyKhoaHoc/LayDanhSachKhoaHoc?tenKhoaHoc=${data}&MaNhom=GP01`
@@ -17,25 +20,25 @@ export const quanLyKhoaHoc = {
   layThongTinKhoaHoc: (data) => {
     return http.get(`/QuanLyKhoaHoc/LayThongTinKhoaHoc?maKhoaHoc=${data}`);
   },
-  dangKyKhoaHoc: (token, data) => {
-    return http.post(`/QuanLyKhoaHoc/DangKyKhoaHoc`, data, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+  dangKyKhoaHoc: (data) => {
+    return http.post(`/QuanLyKhoaHoc/DangKyKhoaHoc`, data);
   },
-  huyKhoaHoc: (token, data) => {
-    return http.post(`/QuanLyKhoaHoc/HuyGhiDanh`, data, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+  huyKhoaHoc: (data) => {
+    return http.post(`/QuanLyKhoaHoc/HuyGhiDanh`, data);
   },
-  ghiDanhKhoaHoc: (token, data) => {
-    return http.post(`/QuanLyKhoaHoc/GhiDanhKhoaHoc`, data, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+  ghiDanhKhoaHoc: (data) => {
+    return http.post(`/QuanLyKhoaHoc/GhiDanhKhoaHoc`, data);
+  },
+  removeCourse: (MaKhoaHoc) => {
+    return http.delete(`/QuanLyKhoaHoc/XoaKhoaHoc?maKhoaHoc=${MaKhoaHoc}`);
+  },
+  updateCourseInformation: (data) => {
+    return http.put("/QuanLyKhoaHoc/CapNhatKhoaHoc", data);
+  },
+  addCourse: (data) => {
+    return http.post("/QuanLyKhoaHoc/ThemKhoaHoc", data);
+  },
+  layMaDanhMucKhoaHoc: () => {
+    return http.get("/QuanLyKhoaHoc/LayDanhMucKhoaHoc");
   },
 };

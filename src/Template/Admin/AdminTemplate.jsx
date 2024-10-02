@@ -7,7 +7,7 @@ import {
   VideoCameraOutlined,
   ApartmentOutlined,
 } from "@ant-design/icons";
-import { Button, Layout, Menu, Skeleton, theme } from "antd";
+import { Button, Dropdown, Layout, Menu, Skeleton, Space, theme } from "antd";
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import { path } from "../../common/path";
 const { Header, Sider, Content } = Layout;
@@ -16,18 +16,38 @@ const AdminTemplate = () => {
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
-
-  const [userInfor, setUserInfor] = useState({});
+  const items = [
+    {
+      key: "1",
+      label: <Link to={path.adminInfor}>Xem thông tin cá nhân</Link>,
+    },
+    {
+      key: "2",
+      label: (
+        <button
+          onClick={() => {
+            localStorage.removeItem("userData");
+            localStorage.removeItem("accessToken");
+            window.location.reload();
+          }}
+        >
+          Log out
+        </button>
+      ),
+    },
+  ];
+  const [userInfor, setUserInfor] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
   const navigate = useNavigate();
   useEffect(() => {
     const localUser = JSON.parse(localStorage.getItem("userData"));
     if (localUser) {
-      if (!localUser || localUser?.maLoaiNguoiDung !== "HV") navigate("/");
-      else {
-        setUserInfor(localUser);
-        setIsAdmin(true);
-      }
+      setUserInfor(localUser);
+      setIsAdmin(true);
+    } else if (!localUser) {
+      setTimeout(() => navigate("/login"), 2000);
+    } else if (localUser?.maLoaiNguoiDung !== "GV") {
+      setTimeout(() => navigate("/"), 2000);
     }
   }, []);
 
@@ -84,9 +104,24 @@ const AdminTemplate = () => {
               height: 64,
             }}
           />
-          <div>
-            <span>hello world !</span>
-          </div>
+          {userInfor ? (
+            <Space direction="vertical" className="me-5">
+              <Space wrap>
+                <Dropdown
+                  menu={{
+                    items,
+                  }}
+                  placement="bottomRight"
+                >
+                  <div className="pe-8 text-orange-500 font-semibold text-xl">
+                    <span className="cursor-pointer">
+                      Hello {userInfor?.hoTen}
+                    </span>
+                  </div>
+                </Dropdown>
+              </Space>
+            </Space>
+          ) : null}
         </Header>
         <Content
           style={{

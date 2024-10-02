@@ -75,6 +75,7 @@ const ListUser = () => {
       })
       .catch((err) => console.log(err));
   };
+
   const handleSubmitFormCreateUser = (event) => {
     event.preventDefault();
     userService
@@ -87,6 +88,7 @@ const ListUser = () => {
         handleNotification(err.response.data, "error");
       });
   };
+
   const handleCancelLesson = (maKhoaHoc) => {
     const userData = {
       maKhoaHoc: maKhoaHoc,
@@ -105,6 +107,7 @@ const ListUser = () => {
         handleNotification(err.response.data, "error");
       });
   };
+
   const handleGhiDanh = () => {
     const registrationData = {
       taiKhoan: selectedUser,
@@ -119,13 +122,14 @@ const ListUser = () => {
         handleNotification(err.message, "error");
       });
   };
+
   const handleConfirmGhiDanh = (maKhoaHoc) => {
     const registrationData = {
       taiKhoan: selectedUser,
       maKhoaHoc: maKhoaHoc,
     };
     quanLyKhoaHoc
-      .ghiDanhKhoaHoc(user?.accessToken, registrationData)
+      .ghiDanhKhoaHoc(registrationData)
       .then((res) => {
         handleNotification(res.data, "success");
         //Force refetch data để render lại trang theo listKhoaHoc mới
@@ -135,6 +139,7 @@ const ListUser = () => {
       })
       .catch((err) => handleNotification(err.response, "error"));
   };
+
   const handleChangeValue = (event) => {
     const { name, value } = event.target;
     setUserValue({ ...userValue, [name]: value });
@@ -198,6 +203,7 @@ const ListUser = () => {
       },
     },
   ];
+
   const columnsDanhSachChoXetDuyet = [
     {
       title: "Mã khóa học",
@@ -236,6 +242,7 @@ const ListUser = () => {
       },
     },
   ];
+
   const columns = [
     {
       title: "Tài khoản",

@@ -65,7 +65,7 @@ const Login = () => {
         navigate("/"); // Redirect to homepage after 2 seconds
       }, 2000);
     } else {
-      setLogInCheck(false); // Mark check as done but no redirect since not logged in
+      setLogInCheck(true); // Mark check as done but no redirect since not logged in
     }
   }, [isLogin, navigate]);
   if (!logInCheck) return <Skeleton active />;
