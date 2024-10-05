@@ -43,12 +43,8 @@ export const userService = {
   cancelJoin: (data) => {
     return http.post("/QuanLyKhoaHoc/HuyGhiDanh", data);
   },
-  LayDanhSachKhoaHocChoXetDuyet: (token, data) => {
-    return http.post(`/QuanLyNguoiDung/LayDanhSachKhoaHocChoXetDuyet`, data, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+  LayDanhSachKhoaHocChoXetDuyet: (data) => {
+    return http.post(`/QuanLyNguoiDung/LayDanhSachKhoaHocChoXetDuyet`, data);
   },
   LayDanhSachKhoaHocChuaGhiDanh: (TaiKhoan, token, data) => {
     return http.post(

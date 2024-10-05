@@ -12,13 +12,14 @@ const KhoaHocCuaUser = () => {
   const [listKhoaHoc, setListKhoaHoc] = useState([]);
   const { handleNotification } = useContext(NotificationContext);
   const { user } = useSelector((state) => state.authSlice);
+
   const handleCancelLesson = (maKhoaHoc) => {
     const userData = {
       maKhoaHoc: maKhoaHoc,
       taiKhoan: user?.taiKhoan,
     };
     quanLyKhoaHoc
-      .huyKhoaHoc(user?.accessToken, userData)
+      .huyKhoaHoc(userData)
       .then((res) => {
         handleNotification(res.data, "success");
         //Force refetch data để render lại trang theo listKhoaHoc mới
@@ -32,28 +33,24 @@ const KhoaHocCuaUser = () => {
   };
 
   useEffect(() => {
-    console.log("đầu effect thứ 1");
     const userTaiKhoan = {
-      taiKhoan: user?.taiKhoan,
+      taiKhoan: user.taiKhoan,
     };
     userService
-      .LayDanhSachKhoaHocChoXetDuyet(user?.accessToken, userTaiKhoan)
+      .LayDanhSachKhoaHocChoXetDuyet(userTaiKhoan)
       .then((res) => {
-        console.log("mã khóa học: ", res?.data);
-        setMaKhoaHocList(res?.data);
+        setMaKhoaHocList(res.data);
       })
       .catch((err) => console.log(err));
   }, [user]);
 
   useEffect(() => {
-    console.log("đầu effect thứ 2: ", maKhoaHocList);
     const callApiDetail = async () => {
       try {
         // Trên Swagger có file maKhoaHoc: "" làm crash không load được nên cần phải filter ra
         const filterMaKhoaHocList = maKhoaHocList.filter(
           (item) => item.maKhoaHoc
         );
-        console.log("filter ma khoa học list: ", filterMaKhoaHocList);
         const promise = filterMaKhoaHocList?.map((item) => {
           return quanLyKhoaHoc.layThongTinKhoaHoc(item.maKhoaHoc);
         });
@@ -69,7 +66,6 @@ const KhoaHocCuaUser = () => {
     callApiDetail();
   }, [maKhoaHocList]);
 
-  console.log("listKhoaHoc: ", listKhoaHoc, maKhoaHocList);
   return (
     <div className="my-5 user_khoa_hoc">
       <div className="container">
