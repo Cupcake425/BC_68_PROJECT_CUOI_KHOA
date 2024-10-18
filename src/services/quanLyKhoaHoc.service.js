@@ -20,8 +20,12 @@ export const quanLyKhoaHoc = {
   layThongTinKhoaHoc: (data) => {
     return http.get(`/QuanLyKhoaHoc/LayThongTinKhoaHoc?maKhoaHoc=${data}`);
   },
-  dangKyKhoaHoc: (data) => {
-    return http.post(`/QuanLyKhoaHoc/DangKyKhoaHoc`, data);
+  dangKyKhoaHoc: (data, token) => {
+    return http.post(`/QuanLyKhoaHoc/DangKyKhoaHoc`, data, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
   },
   huyKhoaHoc: (data) => {
     return http.post(`/QuanLyKhoaHoc/HuyGhiDanh`, data);
