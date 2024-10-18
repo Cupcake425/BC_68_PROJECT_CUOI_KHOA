@@ -26,7 +26,7 @@ const DanhMucKhoaHocList = () => {
       maKhoaHoc: maKhoaHoc,
     };
     quanLyKhoaHoc
-      .dangKyKhoaHoc(registrationData)
+      .dangKyKhoaHoc(registrationData, user?.accessToken)
       .then(() => {
         handleNotification("Đăng ký khóa học thành công!", "success");
       })

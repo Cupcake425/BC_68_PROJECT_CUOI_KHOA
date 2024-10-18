@@ -1,10 +1,9 @@
 import React, { useContext, useEffect, useState } from "react";
 import CustomInput from "../../components/InputCustom/CustomInput";
-import { Button, Modal, Select, Space, Table, Tag } from "antd";
+import { Modal, Select, Space, Table } from "antd";
 import useDebounce from "../../hooks/useDebounce";
 import axios from "axios";
 import { quanLyKhoaHoc } from "../../services/quanLyKhoaHoc.service";
-import { useSelector } from "react-redux";
 import { NotificationContext } from "../../App";
 import moment from "moment";
 import { userService } from "../../services/user.service";
@@ -12,7 +11,6 @@ const QuanLyKhoaHoc = () => {
   const [valueInput, setValueInput] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [foundCourse, setFoundCourse] = useState([]);
-  const { user } = useSelector((state) => state.authSlice);
   const { handleNotification } = useContext(NotificationContext);
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [courseCategoryCode, setCourseCategoryCourse] = useState([]);

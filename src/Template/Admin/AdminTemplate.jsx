@@ -75,13 +75,8 @@ const AdminTemplate = () => {
             },
             {
               key: "3",
-              icon: <UploadOutlined />,
-              label: <Link to={"/admin/create-job"}>Tạo công việc</Link>,
-            },
-            {
-              key: "4",
-              icon: <ApartmentOutlined />,
-              label: <Link to={"/admin/manager-job"}>Quản lý công việc</Link>,
+              icon: <VideoCameraOutlined />,
+              label: <Link to={path.createUser}>Thêm người dùng</Link>,
             },
           ]}
         />
