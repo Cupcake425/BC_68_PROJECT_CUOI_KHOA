@@ -5,6 +5,7 @@ export const authService = {
     return http.post("/QuanLyNguoiDung/DangKy", data);
   },
   signin: (data) => {
+    console.log("data: ", data);
     return http.post("/QuanLyNguoiDung/DangNhap", data);
   },
 };

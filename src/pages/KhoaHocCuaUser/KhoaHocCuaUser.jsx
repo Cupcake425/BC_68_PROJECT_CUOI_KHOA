@@ -51,13 +51,18 @@ const KhoaHocCuaUser = () => {
         const filterMaKhoaHocList = maKhoaHocList.filter(
           (item) => item.maKhoaHoc
         );
+        console.log("token: ", user.accessToken);
         const promise = filterMaKhoaHocList?.map((item) => {
-          return quanLyKhoaHoc.layThongTinKhoaHoc(item.maKhoaHoc);
+          return quanLyKhoaHoc.layThongTinKhoaHoc(
+            item.maKhoaHoc,
+            user?.accessToken
+          );
         });
         const result = await Promise?.all(promise);
         const listKhoaHocData = result?.map((item) => {
           return item.data;
         });
+        console.log("listKhoaHocData: ", listKhoaHocData);
         setListKhoaHoc(listKhoaHocData);
       } catch (err) {
         console.log(err);

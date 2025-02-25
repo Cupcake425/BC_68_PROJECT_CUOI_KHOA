@@ -17,8 +17,12 @@ export const quanLyKhoaHoc = {
       `/QuanLyKhoaHoc/LayKhoaHocTheoDanhMuc?maDanhMuc=${data}&MaNhom=GP01`
     );
   },
-  layThongTinKhoaHoc: (data) => {
-    return http.get(`/QuanLyKhoaHoc/LayThongTinKhoaHoc?maKhoaHoc=${data}`);
+  layThongTinKhoaHoc: (data, token) => {
+    return http.get(`/QuanLyKhoaHoc/LayThongTinKhoaHoc?maKhoaHoc=${data}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
   },
   dangKyKhoaHoc: (data, token) => {
     return http.post(`/QuanLyKhoaHoc/DangKyKhoaHoc`, data, {
